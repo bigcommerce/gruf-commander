@@ -13,7 +13,9 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-RSpec.describe Gruf::Commander::RequestValidationInterceptor do
+require 'spec_helper'
+
+describe Gruf::Commander::RequestValidationInterceptor do
   let(:controller_request) { double(:controller_request) }
 
   let(:controller_request) do
