@@ -13,16 +13,13 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'active_model'
-require_relative 'commander/version'
-require_relative 'commander/command'
-require_relative 'commander/request'
-require_relative 'commander/request_validation_interceptor'
+RSpec.describe Gruf::Commander::Command do
+  let(:command) { described_class.new }
 
-module Gruf
-  ##
-  # Base module for Gruf Commander
-  #
-  module Commander
+  describe '.call' do
+    subject { command.call(nil) }
+    it 'should raise a NotImplementedError' do
+      expect { subject }.to raise_error(NotImplementedError)
+    end
   end
 end

@@ -13,11 +13,15 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
 require_relative 'simplecov_helper'
+require 'gruf'
 require 'gruf/commander'
 require 'ffaker'
 require 'pry'
+
+Dir["#{File.join(File.dirname(__FILE__), 'support')}/**/*.rb"].each {|f| require f }
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
