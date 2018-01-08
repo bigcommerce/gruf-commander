@@ -19,6 +19,9 @@ module Gruf
     # Does request validation error handling
     #
     class RequestValidationInterceptor < ::Gruf::Interceptors::ServerInterceptor
+      ##
+      # Intercept the request and properly handle validation failures
+      #
       def call
         yield # this returns the protobuf message
       rescue Gruf::Commander::InvalidRequest => e
