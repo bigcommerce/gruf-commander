@@ -13,30 +13,42 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'bundler/setup'
-require_relative 'simplecov_helper'
-require 'gruf'
-require 'gruf/commander'
-require 'ffaker'
-require 'pry'
+class Box; end
 
-Dir["#{File.join(File.dirname(__FILE__), 'support')}/**/*.rb"].each {|f| require f }
+module Rpc
+  class BoxService; end
+  class Box; end
+  class CreateBoxRequest; end
+  class CreateBoxResponse; end
+end
 
-RSpec.configure do |config|
-  config.example_status_persistence_file_path = '.rspec_status'
-  config.disable_monkey_patching!
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+class CreateBoxCommand < Gruf::Commander::Command
+  def call(request)
+    Box.new
   end
-  config.alias_example_to :fit, focus: true
-  config.filter_run focus: true
-  config.filter_run_excluding broken: true
-  config.run_all_when_everything_filtered = true
-  config.expose_current_running_example_as :example
-  config.mock_with :rspec do |mocks|
-    mocks.allow_message_expectations_on_nil = true
-  end
-  config.color = true
+end
 
-  config.include Gruf::Commander::SpecHelpers
+class CreateBoxRequest < Gruf::Commander::Request
+  attr_reader :width
+  attr_reader :height
+
+  validate :validate_width, :validate_height
+
+  def initialize(width:, height:)
+    @width = width
+    @height = height
+    super(command: CreateBoxCommand.new)
+  end
+
+  private
+
+  def validate_width
+    return if @width.to_i > 0
+    errors.add(:width, :invalid_width, message: 'Please enter a valid width!')
+  end
+
+  def validate_height
+    return if @height.to_i > 0
+    errors.add(:height, :invalid_height, message: 'Please enter a valid height!')
+  end
 end

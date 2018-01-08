@@ -1,4 +1,4 @@
-# Copyright (c) 2018-present, BigCommerce Pty. Ltd. All rights reserved
+# Copyright (c) 2017-present, BigCommerce Pty. Ltd. All rights reserved
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
@@ -13,30 +13,19 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'bundler/setup'
-require_relative 'simplecov_helper'
-require 'gruf'
-require 'gruf/commander'
-require 'ffaker'
-require 'pry'
-
-Dir["#{File.join(File.dirname(__FILE__), 'support')}/**/*.rb"].each {|f| require f }
-
-RSpec.configure do |config|
-  config.example_status_persistence_file_path = '.rspec_status'
-  config.disable_monkey_patching!
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+module Gruf
+  module Commander
+    ##
+    # Spec helpers for gruf commander
+    #
+    module SpecHelpers
+      ##
+      # @param [Hash] metadata
+      # @param [Hash] output_metadata
+      #
+      def grpc_active_call(metadata: {}, output_metadata: {})
+        double(:active_call, metadata: metadata, output_metadata: output_metadata)
+      end
+    end
   end
-  config.alias_example_to :fit, focus: true
-  config.filter_run focus: true
-  config.filter_run_excluding broken: true
-  config.run_all_when_everything_filtered = true
-  config.expose_current_running_example_as :example
-  config.mock_with :rspec do |mocks|
-    mocks.allow_message_expectations_on_nil = true
-  end
-  config.color = true
-
-  config.include Gruf::Commander::SpecHelpers
 end

@@ -13,30 +13,26 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-require 'bundler/setup'
-require_relative 'simplecov_helper'
-require 'gruf'
-require 'gruf/commander'
-require 'ffaker'
-require 'pry'
+RSpec.describe Gruf::Commander::Request do
+  let(:request_params) { { width: 5, height: 10 } }
+  let(:request) { CreateBoxRequest.new(request_params) }
 
-Dir["#{File.join(File.dirname(__FILE__), 'support')}/**/*.rb"].each {|f| require f }
+  describe '.submit!' do
+    subject { request.submit! }
 
-RSpec.configure do |config|
-  config.example_status_persistence_file_path = '.rspec_status'
-  config.disable_monkey_patching!
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+    context 'if the request is valid' do
+      it 'should run call on the command' do
+        expect(request.command).to receive(:call).with(request).once
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'if the request is invalid' do
+      let(:request_params) { { width: 0, height: 7 } }
+
+      it 'should raise an InvalidRequest exception' do
+        expect { subject }.to raise_error(Gruf::Commander::InvalidRequest)
+      end
+    end
   end
-  config.alias_example_to :fit, focus: true
-  config.filter_run focus: true
-  config.filter_run_excluding broken: true
-  config.run_all_when_everything_filtered = true
-  config.expose_current_running_example_as :example
-  config.mock_with :rspec do |mocks|
-    mocks.allow_message_expectations_on_nil = true
-  end
-  config.color = true
-
-  config.include Gruf::Commander::SpecHelpers
 end
