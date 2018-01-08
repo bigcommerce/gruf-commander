@@ -1,5 +1,7 @@
 # Gruf Commander
 
+[![Build Status](https://travis-ci.com/bigcommerce/gruf-commander.svg?token=D3Cc4LCF9BgpUx4dpPpv&branch=master)](https://travis-ci.com/bigcommerce/gruf-commander)
+
 Assists with request/command-style syntax and validation in gruf requests.
 
 ## Installation
