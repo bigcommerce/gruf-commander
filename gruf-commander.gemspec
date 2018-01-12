@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/bigcommerce/gruf-commander'
 
-  spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf.gemspec']
+  spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-commander.gemspec']
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.16'
