@@ -24,7 +24,7 @@ Or install it yourself as:
 ### Rails < 5 usage
 
 If you're on a Rails version prior to 3/4, or utilizing ActiveModel < 5, you'll need to install the 
-(active_model-errors_details)[https://github.com/cowbell/active_model-errors_details] gem.
+[active_model-errors_details](https://github.com/cowbell/active_model-errors_details) gem.
 
 ```ruby
 gem 'active_model-errors_details'
