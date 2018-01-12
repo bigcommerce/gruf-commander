@@ -1,8 +1,9 @@
 # Gruf Commander
 
-[![Build Status](https://travis-ci.com/bigcommerce/gruf-commander.svg?token=D3Cc4LCF9BgpUx4dpPpv&branch=master)](https://travis-ci.com/bigcommerce/gruf-commander)
+[![Build Status](https://travis-ci.com/bigcommerce/gruf-commander.svg?token=D3Cc4LCF9BgpUx4dpPpv&branch=master)](https://travis-ci.com/bigcommerce/gruf-commander) [![Gem Version](https://badge.fury.io/rb/gruf-commander.svg)](https://badge.fury.io/rb/gruf-commander) [![Documentation](https://inch-ci.org/github/bigcommerce/gruf-commander.svg?branch=master)](https://inch-ci.org/github/bigcommerce/gruf-commander?branch=master)
 
-Assists with request/command-style syntax and validation in gruf requests.
+Assists with request/command-style syntax and separated validation layer in [gruf](https://github.com/bigcommerce/gruf)
+requests.
 
 ## Installation
 
@@ -106,6 +107,14 @@ contract on initialization.
 
 We recommend using a DI system (such as dry-rb) to use with Gruf Commander, as it helps with testing and refactoring
 in more complex applications. 
+
+## Testing
+
+Tests are run via rspec:
+
+```bash
+bundle exec rspec
+```
 
 ## License
 
