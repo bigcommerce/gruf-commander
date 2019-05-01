@@ -2,6 +2,8 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.0.0
+
 - Add frozen_string_literal: true to all files
 - Deprecate ruby 2.2 support
 
