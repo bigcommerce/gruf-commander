@@ -1,7 +1,5 @@
-inherit_from:
-  - .rubocop_todo.yml
-
 AllCops:
+  TargetRubyVersion: 2.4
   Exclude:
     - spec/**/*
     - .bundle/**/*
@@ -11,3 +9,12 @@ AllCops:
     - log/**/*
     - Rakefile
     - gruf-commander.gemspec
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
