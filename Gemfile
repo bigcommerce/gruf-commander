@@ -22,7 +22,7 @@ gemspec
 gem 'gruf', '~> 2.1'
 
 group :development, :test do
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'ffaker'
   gem 'pry-byebug'
   gem 'rubocop', '~> 0.52'
@@ -31,6 +31,7 @@ end
 group :test do
   gem 'bundler-audit'
   gem 'null-logger'
-  gem 'rspec', '~> 3.6'
+  gem 'rspec', '~> 3.8'
+  gem 'rspec_junit_formatter', '~> 0.4.1'
   gem 'simplecov', require: false
 end

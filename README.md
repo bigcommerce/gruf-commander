@@ -1,6 +1,6 @@
 # Gruf Commander
 
-[![Build Status](https://travis-ci.com/bigcommerce/gruf-commander.svg?token=D3Cc4LCF9BgpUx4dpPpv&branch=master)](https://travis-ci.com/bigcommerce/gruf-commander) [![Gem Version](https://badge.fury.io/rb/gruf-commander.svg)](https://badge.fury.io/rb/gruf-commander) [![Documentation](https://inch-ci.org/github/bigcommerce/gruf-commander.svg?branch=master)](https://inch-ci.org/github/bigcommerce/gruf-commander?branch=master)
+[![CircleCI](https://circleci.com/gh/bigcommerce/gruf-commander.svg?style=svg)](https://circleci.com/gh/bigcommerce/gruf-commander) [![Gem Version](https://badge.fury.io/rb/gruf-commander.svg)](https://badge.fury.io/rb/gruf-commander) [![Documentation](https://inch-ci.org/github/bigcommerce/gruf-commander.svg?branch=master)](https://inch-ci.org/github/bigcommerce/gruf-commander?branch=master)
 
 Assists with request/command-style syntax and separated validation layer in [gruf](https://github.com/bigcommerce/gruf)
 requests.
