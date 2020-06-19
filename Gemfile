@@ -24,7 +24,7 @@ gemspec
 gem 'gruf', '~> 2.4'
 
 group :development, :test do
-  gem 'factory_bot',    '~> 5.0'
+  gem 'factory_bot',    '~> 6.0'
   gem 'ffaker',         '~> 2.8'
   gem 'pry-byebug',     '~> 3.5'
   gem 'rubocop',        '~> 0.68'
