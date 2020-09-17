@@ -32,9 +32,9 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-commander.gemspec']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'bundler', '>= 1.16'
+  spec.add_development_dependency 'rake', '>= 10.0'
+  spec.add_development_dependency 'rspec', '>= 3.8'
 
   spec.add_runtime_dependency 'activemodel', '> 4'
 end
