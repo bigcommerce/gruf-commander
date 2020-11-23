@@ -1,20 +1,56 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
+  NewCops: enable
   Exclude:
-    - spec/**/*
     - .bundle/**/*
     - bin/**/*
     - vendor/**/*
     - tmp/**/*
     - log/**/*
-    - Rakefile
-    - gruf-commander.gemspec
+    - spec/support/**/*
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-thread_safety
 
 Metrics/AbcSize:
   Max: 30
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
   Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+####################################################################################################
+# RSpec Configurations
+####################################################################################################
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Max: 15
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 50
+
+RSpec/AnyInstance:
+  Enabled: false
+
+# This does not work with RPC messages
+RSpec/VerifiedDoubles:
+  Enabled: false

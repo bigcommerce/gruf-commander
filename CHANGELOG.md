@@ -2,6 +2,12 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.1.0
+
+- Bump minimum required Ruby version to 2.6
+- Bump Rubocop to 1.4
+- Add tests for Ruby 2.7
+
 ### 1.0.0
 
 - Add frozen_string_literal: true to all files
