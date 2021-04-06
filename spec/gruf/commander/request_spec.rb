@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018-present, BigCommerce Pty. Ltd. All rights reserved
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -19,20 +21,20 @@ describe Gruf::Commander::Request do
   let(:request_params) { { width: 5, height: 10 } }
   let(:request) { CreateBoxRequest.new(request_params) }
 
-  describe '.submit!' do
+  describe '#submit!' do
     subject { request.submit! }
 
-    context 'if the request is valid' do
-      it 'should run call on the command' do
+    context 'when the request is valid' do
+      it 'runs call on the command' do
         expect(request.command).to receive(:call).with(request).once
-        expect { subject }.to_not raise_error
+        expect { subject }.not_to raise_error
       end
     end
 
-    context 'if the request is invalid' do
+    context 'when the request is invalid' do
       let(:request_params) { { width: 0, height: 7 } }
 
-      it 'should raise an InvalidRequest exception' do
+      it 'raises an InvalidRequest exception' do
         expect { subject }.to raise_error(Gruf::Commander::InvalidRequest)
       end
     end

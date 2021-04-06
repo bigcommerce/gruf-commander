@@ -17,23 +17,4 @@
 #
 source 'https://rubygems.org'
 
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-
 gemspec
-
-gem 'gruf', '~> 2.4'
-
-group :development, :test do
-  gem 'factory_bot',    '~> 5.0'
-  gem 'ffaker',         '~> 2.8'
-  gem 'pry-byebug',     '~> 3.5'
-  gem 'rubocop',        '~> 0.68'
-end
-
-group :test do
-  gem 'bundler-audit',         '~> 0.6'
-  gem 'null-logger',           '~> 0.1'
-  gem 'rspec',                 '~> 3.8'
-  gem 'rspec_junit_formatter', '~> 0.4.1'
-  gem 'simplecov',             '~> 0.15', require: false
-end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018-present, BigCommerce Pty. Ltd. All rights reserved
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -17,6 +19,6 @@ require 'spec_helper'
 
 describe Gruf::Commander do
   it 'has a version number' do
-    expect(Gruf::Commander::VERSION).not_to be nil
+    expect(Gruf::Commander::VERSION).not_to be_nil
   end
 end

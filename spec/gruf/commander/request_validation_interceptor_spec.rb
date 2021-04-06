@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018-present, BigCommerce Pty. Ltd. All rights reserved
-#
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
 # rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
@@ -16,8 +17,6 @@
 require 'spec_helper'
 
 describe Gruf::Commander::RequestValidationInterceptor do
-  let(:controller_request) { double(:controller_request) }
-
   let(:controller_request) do
     double(
       :controller_request,
@@ -31,22 +30,21 @@ describe Gruf::Commander::RequestValidationInterceptor do
   let(:error) { Gruf::Error.new }
   let(:options) { {} }
   let(:interceptor) { described_class.new(controller_request, error, options) }
-
   let(:request) { CreateBoxRequest.new(width: 5, height: 10) }
 
-  describe '.call' do
+  describe '#call' do
     subject { interceptor.call { request.submit! } }
 
     context 'when the call succeeds' do
-      it 'should noop' do
-        expect { subject }.to_not raise_error
+      it 'no-ops' do
+        expect { subject }.not_to raise_error
       end
     end
 
     context 'when the call raises an InvalidRequest' do
       let(:request) { CreateBoxRequest.new(width: 0, height: 10) }
 
-      it 'should fail and set the appropriate field errors' do
+      it 'fails and set the appropriate field errors' do
         expect { subject }.to raise_error(GRPC::InvalidArgument) do |e|
           expect(e.details).to eq 'Invalid request'
           expect(e.code).to eq 3
@@ -56,7 +54,7 @@ describe Gruf::Commander::RequestValidationInterceptor do
           expect(err['app_code']).to eq 'invalid_request'
           expect(err['message']).to eq 'Invalid request'
 
-          expect(err['field_errors']).to_not be_empty
+          expect(err['field_errors']).not_to be_empty
           fe = err['field_errors'][0]
           expect(fe['field_name']).to eq 'width'
           expect(fe['error_code']).to eq 'invalid_width'
