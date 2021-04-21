@@ -19,7 +19,7 @@ require 'spec_helper'
 
 describe Gruf::Commander::Request do
   let(:request_params) { { width: 5, height: 10 } }
-  let(:request) { CreateBoxRequest.new(request_params) }
+  let(:request) { CreateBoxRequest.new(**request_params) }
 
   describe '#submit!' do
     subject { request.submit! }

@@ -45,12 +45,14 @@ class CreateBoxRequest < Gruf::Commander::Request
   private
 
   def validate_width
-    return if @width.to_i > 0
+    return if @width.to_i.positive?
+
     errors.add(:width, :invalid_width, message: 'Please enter a valid width!')
   end
 
   def validate_height
-    return if @height.to_i > 0
+    return if @height.to_i.positive?
+
     errors.add(:height, :invalid_height, message: 'Please enter a valid height!')
   end
 end
