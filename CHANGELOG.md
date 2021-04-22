@@ -2,6 +2,8 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.2.0
+
 - Add Ruby 3.0 support
 
 ### 1.1.0
