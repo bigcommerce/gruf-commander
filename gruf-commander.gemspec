@@ -32,9 +32,8 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-commander.gemspec']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '~> 2.6'
+  spec.required_ruby_version = '>= 2.6'
 
-  spec.add_development_dependency 'bundler', '>= 1.16'
   spec.add_development_dependency 'bundler-audit', '>= 0.6'
   spec.add_development_dependency 'factory_bot', '>= 5.0'
   spec.add_development_dependency 'ffaker', '>= 2.8'
