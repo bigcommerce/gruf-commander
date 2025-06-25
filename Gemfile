@@ -18,3 +18,19 @@
 source 'https://rubygems.org'
 
 gemspec
+
+gem 'bundler-audit', '>= 0.6'
+gem 'factory_bot', '>= 5.0'
+gem 'ffaker', '>= 2.8'
+gem 'pry', '>= 0.12'
+gem 'pry-byebug', '>= 3.9'
+gem 'reline'
+gem 'rspec', '>= 3.8'
+gem 'rspec_junit_formatter', '>= 0.4'
+gem 'rubocop', '>= 1.35'
+gem 'rubocop-packaging'
+gem 'rubocop-performance'
+gem 'rubocop-rake'
+gem 'rubocop-rspec'
+gem 'rubocop-thread_safety'
+gem 'simplecov', '>= 0.15'
