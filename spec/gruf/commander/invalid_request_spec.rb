@@ -15,35 +15,22 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-module Gruf
-  module Commander
-    ##
-    # Base request class
-    #
-    class Request
-      include ActiveModel::Validations
+require 'spec_helper'
 
-      # @var [Command] command
-      attr_reader :command
+describe Gruf::Commander::InvalidRequest do
+  let(:req) { instance_double(Gruf::Controllers::Request, method: 'TestMethod', service: 'TestService') }
+  let(:error) { described_class.new(req, 'Invalid request') }
 
-      ##
-      # @param [Command] command
-      #
-      def initialize(command:)
-        @command = command
-      end
+  describe '#message' do
+    it 'returns the correct message' do
+      expect(error.message).to eq 'Invalid request'
+    end
+  end
 
-      ##
-      # Validate and submit the request
-      #
-      # @raise [InvalidRequest] if the request is invalid
-      # rubocop:disable Style/RaiseArgs
-      def submit!
-        raise InvalidRequest.new(self) unless valid?
-
-        command.call(self)
-      end
-      # rubocop:enable Style/RaiseArgs
+  describe '#inspect' do
+    it 'returns a string representation of the error' do
+      expect(error.inspect).to include('Gruf::Commander::InvalidRequest')
+      expect(error.inspect).to include('Invalid request')
     end
   end
 end

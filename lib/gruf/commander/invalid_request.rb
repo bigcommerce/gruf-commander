@@ -18,32 +18,19 @@
 module Gruf
   module Commander
     ##
-    # Base request class
+    # Used when submitting requests from commands; utilize to issue a validation exception on a request
     #
-    class Request
-      include ActiveModel::Validations
-
-      # @var [Command] command
-      attr_reader :command
+    class InvalidRequest < StandardError
+      attr_reader :request
 
       ##
-      # @param [Command] command
+      # @param [Request] request
+      # @param [String] message
       #
-      def initialize(command:)
-        @command = command
+      def initialize(request, message = '')
+        @request = request
+        super(message)
       end
-
-      ##
-      # Validate and submit the request
-      #
-      # @raise [InvalidRequest] if the request is invalid
-      # rubocop:disable Style/RaiseArgs
-      def submit!
-        raise InvalidRequest.new(self) unless valid?
-
-        command.call(self)
-      end
-      # rubocop:enable Style/RaiseArgs
     end
   end
 end
