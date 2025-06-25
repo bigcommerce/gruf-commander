@@ -17,6 +17,6 @@
 #
 module Gruf
   module Commander
-    VERSION = '1.3.1.pre'
+    VERSION = '1.3.1'
   end
 end

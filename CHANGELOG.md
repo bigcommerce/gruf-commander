@@ -2,6 +2,8 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.3.1
+
 - Fix NameError with InvalidRequest object
 
 ### 1.3.0
