@@ -24,29 +24,18 @@ Gem::Specification.new do |spec|
   spec.version       = Gruf::Commander::VERSION
   spec.authors       = ['Shaun McCormick']
   spec.email         = ['splittingred@gmail.com']
+  spec.license       = 'MIT'
 
   spec.summary       = 'Command/request syntax helper for gruf'
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/bigcommerce/gruf-commander'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-commander.gemspec']
-  spec.require_paths = ['lib']
+  spec.require_paths = %w[lib]
 
-  spec.required_ruby_version = '>= 2.6'
+  spec.required_ruby_version = '>= 3.2', '< 4'
 
-  spec.add_development_dependency 'bundler-audit', '>= 0.6'
-  spec.add_development_dependency 'factory_bot', '>= 5.0'
-  spec.add_development_dependency 'ffaker', '>= 2.8'
-  spec.add_development_dependency 'pry', '>= 0.12'
-  spec.add_development_dependency 'pry-byebug', '>= 3.9'
-  spec.add_development_dependency 'rspec', '>= 3.8'
-  spec.add_development_dependency 'rspec_junit_formatter', '>= 0.4'
-  spec.add_development_dependency 'rubocop', '>= 1.4'
-  spec.add_development_dependency 'rubocop-performance', '>= 0.0.1'
-  spec.add_development_dependency 'rubocop-rspec', '>= 2.0'
-  spec.add_development_dependency 'rubocop-thread_safety', '>= 0.3'
-  spec.add_development_dependency 'simplecov', '>= 0.15'
-
-  spec.add_runtime_dependency 'activemodel', '> 4'
-  spec.add_runtime_dependency 'gruf', '>= 2.4'
+  spec.add_dependency 'activemodel', '> 7.2'
+  spec.add_dependency 'gruf', '>= 2.19'
 end

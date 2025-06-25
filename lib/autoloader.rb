@@ -14,15 +14,9 @@
 # WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
-require 'gruf'
-require 'active_model'
-require_relative '../autoloader'
 
-module Gruf
-  ##
-  # Base module for Gruf Commander
-  #
-  module Commander
-  end
-end
+# use Zeitwerk to lazily autoload all the files in the lib directory
+require 'zeitwerk'
+loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
+loader.ignore(File.join(__dir__.to_s, 'gruf-commander.rb'))
+loader.setup
