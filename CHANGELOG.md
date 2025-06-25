@@ -2,6 +2,8 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.3.0
+
 - Add support for Ruby 3.2, 3.3, 3.4
 - Drop Ruby 2.6, 2.7, 3.0 support
 - Move to zeitwerk for autoloading
