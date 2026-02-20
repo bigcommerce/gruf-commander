@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['README.md', 'CHANGELOG.md', 'CODE_OF_CONDUCT.md', 'lib/**/*', 'gruf-commander.gemspec']
   spec.require_paths = %w[lib]
 
-  spec.required_ruby_version = '>= 3.2', '< 4'
+  spec.required_ruby_version = '>= 3.2', '< 5'
 
   spec.add_dependency 'activemodel', '> 7.2'
   spec.add_dependency 'gruf', '>= 2.19'

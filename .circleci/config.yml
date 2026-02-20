@@ -31,6 +31,12 @@ executors:
       ruby-version:
         type: string
         default: "3.4"
+  ruby_4_0:
+    <<: *ruby_env
+    parameters:
+      ruby-version:
+        type: string
+        default: "4.0"
 
 commands:
   pre-setup:
@@ -38,19 +44,31 @@ commands:
       - add_ssh_keys
       - checkout
   bundle-install:
+    parameters:
+      gem_cache_key:
+        type: string
+        default: "gem-cache-v2"
+      grpc_ruby_build_procs:
+        type: integer
+        default: 4
     steps:
-      - run:
-          name: "Install bundler"
-          command: |
-            gem install bundler
       - restore_cache:
           keys:
-            - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gem-cache-{{ arch }}-{{ .Branch }}
-            - gem-cache
-      - run: bundle check || bundle install --path vendor/bundle
+            - <<parameters.gem_cache_key>>-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - <<parameters.gem_cache_key>>-{{ arch }}-{{ .Branch }}
+            - <<parameters.gem_cache_key>>
+      - run:
+          name: "bundle install"
+          command: |
+            export GRPC_RUBY_BUILD_PROCS=<<parameters.grpc_ruby_build_procs>>
+            # due to needing GRPC_RUBY_BUILD_PROCS, we need to explicitly install at least this version
+            gem install grpc -v '>= 1.44.0.pre2' --verbose --no-document
+            bundle config set --local path 'vendor/bundle'
+            bundle lock --add-platform x86_64-linux
+            bundle check || bundle install
+            bundle clean
       - save_cache:
-          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: <<parameters.gem_cache_key>>-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
   rspec-unit:
@@ -82,7 +100,7 @@ commands:
       - run: bundle exec bundle-audit check -v <<parameters.additional_args>>
   rubocop:
     steps:
-      - run: bundle exec rubocop -p
+      - run: bundle exec rubocop -P
 
 jobs:
   bundle-audit:
@@ -151,3 +169,14 @@ workflows:
       - rspec-unit:
           name: "ruby-3_4-rspec"
           e: "ruby_3_4"
+  ruby_4_0:
+    jobs:
+      - bundle-audit:
+          name: "ruby-4_0-bundle_audit"
+          e: "ruby_4_0"
+      - rubocop:
+          name: "ruby-4_0-rubocop"
+          e: "ruby_4_0"
+      - rspec-unit:
+          name: "ruby-4_0-rspec"
+          e: "ruby_4_0"
