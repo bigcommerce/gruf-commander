@@ -2,6 +2,10 @@ Changelog for the gruf-commander gem. This includes internal history before the 
 
 ### Pending release
 
+### 1.4.0
+
+- Add support for Ruby 4.0
+
 ### 1.3.2
 
 - Fix autoloading issue in certain Rails environments
